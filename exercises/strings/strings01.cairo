@@ -2,13 +2,11 @@
 
 # Short strings really are felts in disguise, and support the same basic operations
 
-# I AM NOT DONE
-
 # TODO: Find the key to decode the string that passes the test
 
 func decode_cipher1() -> (plaintext : felt):
     let ciphertext = 'Another One Bites The Dust'
-    let key = 0
+    let key = 'Twinkle Twinkle Little Star' - ciphertext
     let plaintext = ciphertext + key
     return (plaintext)
 end
@@ -16,7 +14,7 @@ end
 # TODO: Find the correct ciphertext that passes the test
 
 func decode_cipher2() -> (plaintext : felt):
-    let ciphertext = 0
+    let ciphertext = ('Magic Starknet Money' - 0xc0de) / 1337
     let plaintext = 1337 * ciphertext + 0xc0de
     return (plaintext)
 end
@@ -26,6 +24,8 @@ end
 func test_decode_string{syscall_ptr : felt*}():
     # The correct key should produce the corresponding plaintext
     let (decoded_string) = decode_cipher1()
+    # Ox5477696e6b6c65205477696e6b6c65204c6974746c652053746172
+    # 34747483134175633576534736258108540438066879946684407406239441266
     assert decoded_string = 'Twinkle Twinkle Little Star'
 
     # The correct ciphertext should produce corresponding plaintext
